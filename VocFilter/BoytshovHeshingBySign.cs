@@ -8,7 +8,7 @@ namespace VocFilter
 {
     class BoytshovHeshingBySign
     {
-        static List<string> vocabulary;
+        static List<double> vocabulary = new List<double>();
         static string[,] alphabet= 
             {
                 { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },
@@ -18,20 +18,27 @@ namespace VocFilter
             };
 
         //поиск похожих слов
-        static public List<string> FamWords(string word)
+        static public List<double> FamWords(string word)
         {
-            List<string> wordlist=null;
+            List<double> wordlist=null;
+            CreateVoc();
             wordlist = Serach(GetHesh(CreateSign(word)));
             return wordlist;
 
         }
 
         //создание словаря
-        public static List<string> CreateVoc()
+        public static void CreateVoc()
         {
-            string[] list = { "хух", "пербить", "киза"};
-            List<string> wordlist = new List<string>(list);
-            return wordlist;
+            List <string> wordlist = new List<string>();
+            wordlist.Add("0000010001000");
+            wordlist.Add("0101100010010");
+            wordlist.Add("1011001000000");
+            for (int i=0; i<wordlist.Count; i++)
+            {
+                vocabulary.Add(GetHesh(wordlist[i]));
+            }
+            vocabulary = new List<double>(vocabulary);
         }
 
         //создание сигнатуры
@@ -39,18 +46,16 @@ namespace VocFilter
         {
             string sign = "";
             for (int i = 1; i < 4; i++)
-                for (int j = 1; j < 13; j++)
+                for (int j = 0; j < 13; j++)
                 {
                     if (word.Contains(alphabet[i, j]))
                     {
                         alphabet[0, j] = "1";
-                        j++;
-                        i = 1;
                     }
                 }
             for (int i = 0; i < 13; i++)
             {
-                sign = alphabet[0, i];
+                sign += alphabet[0, i];
             }
             return sign;
         }
@@ -60,17 +65,18 @@ namespace VocFilter
         {
             double hesh = 0;
             for (int i = 0; i < sign.Length; i++)
-                hesh = Convert.ToInt32(sign[i]) * Math.Pow(2, i);
+                if (sign[i]!='0')
+                        hesh = Convert.ToInt32(sign[i]) * Math.Pow(2, i);
             return hesh;
         }
 
         //сравнение
-        static List<string> Serach(double hesh)
+        static List<double> Serach(double hesh)
         {
-            List<string> reslist = new List<string>();
+            List<double> reslist = new List<double>();
             reslist = null;
             for (int i = 0; i < vocabulary.Count; i++)
-                if (Convert.ToInt32(vocabulary[i]) - hesh <= 2)
+                if (vocabulary[i] - hesh <= 2)
                     reslist.Add(vocabulary[i]);
             return reslist;
         }

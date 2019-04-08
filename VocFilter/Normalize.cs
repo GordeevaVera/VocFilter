@@ -45,6 +45,8 @@ namespace VocFilter
                     wordlist.Add(word);
                     word = "";
                 }
+                if (i == text.Length-1)
+                    wordlist.Add(word);
             }
             return wordlist;
         }
