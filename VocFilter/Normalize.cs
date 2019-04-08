@@ -28,5 +28,25 @@ namespace VocFilter
             }
             return outtext;
         }
+
+        //получает список слов из текста
+        public static List<string> GetWordList(string text)
+        {
+            List<string> wordlist=new List<string>();
+            string word = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                //собирает слово по-буквам
+                if (text[i] != ' ')
+                    word += text[i];
+                else
+                {
+                    //добавляет слово в лист
+                    wordlist.Add(word);
+                    word = "";
+                }
+            }
+            return wordlist;
+        }
     }
 }

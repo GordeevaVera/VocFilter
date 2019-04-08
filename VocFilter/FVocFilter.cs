@@ -32,7 +32,18 @@ namespace VocFilter
             //приводит к нормальному виду (в строке только буквы и пробелы)
             tBText.Text=Normalize.GetLettersAndSpaces(tBText.Text);
             //поиск точных совпадений
-            //поиск нечтоных совпадений
+            //поиск неточных совпадений
+            List<string> wordlist = Normalize.GetWordList(tBText.Text);
+            int cfind=0;
+            for(int i=0; i<wordlist.Count; i++)
+            {
+                if (BoytshovHeshingBySign.FamWords(wordlist[i]) != null)
+                    cfind++;
+            }
+            if (cfind != 0)
+            {
+                MessageBox.Show("В тексте присутствуют слова похожие на нежелательные.", "Результат");
+            }
             //поиск "разбитых" нежелательных слов
         }
     }

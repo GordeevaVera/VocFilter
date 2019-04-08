@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoytshovHeshingBySign.cs" />
+    <Compile Include="ConWords.cs" />
+    <Compile Include="FoSearch.cs" />
     <Compile Include="FVocFilter.cs">
       <SubType>Form</SubType>
     </Compile>
