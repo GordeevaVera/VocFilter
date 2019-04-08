@@ -59,6 +59,7 @@
             this.btFind.TabIndex = 2;
             this.btFind.Text = "Определить вероятность нежелательных вхождений";
             this.btFind.UseVisualStyleBackColor = true;
+            this.btFind.Click += new System.EventHandler(this.btFind_Click);
             // 
             // btClear
             // 
@@ -68,6 +69,7 @@
             this.btClear.TabIndex = 3;
             this.btClear.Text = "Очистить";
             this.btClear.UseVisualStyleBackColor = true;
+            this.btClear.Click += new System.EventHandler(this.btClear_Click);
             // 
             // btClose
             // 
@@ -77,6 +79,7 @@
             this.btClose.TabIndex = 4;
             this.btClose.Text = "Закрыть";
             this.btClose.UseVisualStyleBackColor = true;
+            this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
             // FVocFilter
             // 
