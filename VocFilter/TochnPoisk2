@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace VocFilter
+{
+    class PoiskTochn
+    {
+        //vocabulary - нормированный исходный текст
+        static List<string> vocabulary;
+        //создание словаря
+        public static List<string> CreateVoc()
+        {
+            string[] list = { " хух ", " пербить ", " киза "};
+            List<string> wordlist = new List<string>(list);
+            return wordlist;
+        }
+        //поиск
+        static List<string> Serach()
+        {
+            List<string> reslist = new List<string>();
+            reslist = null;
+            for (int i = 0; i < vocabulary.Count; i++)
+            for (int j = 0; j < wordlist.Count; j++)
+                if (vocabulary[i].Contains(wordlist[j]))           
+                    reslist.Add(vocabulary[i]);
+            return reslist;
+        }
+    }
+}
